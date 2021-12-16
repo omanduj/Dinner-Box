@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Authorization Form</title>
+    </head>
+    <body>
+        <form action="/login/" method="POST">{% csrf_token %}
+            <label for="your_name">Your name: </label>
+            <input type="username" name="username" placeholder="Username">
+            <label for="your_password">Password: </label>
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="login">
+        </form>
+    </body>
+</html>

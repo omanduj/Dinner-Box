@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "food_proj"
+version = "0.1.0"
+description = ""
+authors = ["omanduj <omanduj@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^3.2.9"
+PyJWT = "^2.3.0"
+requests = "^2.26.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
