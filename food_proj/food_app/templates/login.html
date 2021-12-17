@@ -6,8 +6,8 @@
     </head>
     <body>
         <form action="/login/" method="POST">{% csrf_token %}
-            <label for="your_name">Your name: </label>
-            <input type="username" name="username" placeholder="Username">
+            <label for="your_name">Your Email: </label>
+            <input type="email" name="email" placeholder="email">
             <label for="your_password">Password: </label>
             <input type="password" name="password" placeholder="Password">
             <input type="submit" value="login">
