@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db import models
-
+import random
 import requests
 import json
 # Create your views here.
@@ -17,11 +17,11 @@ class Restaurant_info(models.Model):
         self.price = None
         self.location = None
 
-def create_url(request):
+def create_url():
     url = 'https://api.yelp.com/v3/businesses/search?'
     return url
 
-def parameters(request, location):
+def parameters(location):
     params = {'term': 'food',
                  'limit': 50,
                  'offset': 50,
@@ -29,65 +29,65 @@ def parameters(request, location):
                  'location': location}
     return params
 
-def credentials(request):
-    API_KEY = '2E7rOgAXr-suArMqgPvLy0dF6YKqKzH26MhFSi6-23fF3qfsZjkysaeT_E9mWgrU_NVBpp4D7Tz-jmarCmx_wLtxoCNlH-j_2mFCW7yHS_nLr1pJ4B-ArBEXNS12YXYx'
-    HEADERS = {'Authorization': 'bearer %s' % API_KEY}
-    return HEADERS
+def credentials():
+    key = '2E7rOgAXr-suArMqgPvLy0dF6YKqKzH26MhFSi6-23fF3qfsZjkysaeT_E9mWgrU_NVBpp4D7Tz-jmarCmx_wLtxoCNlH-j_2mFCW7yHS_nLr1pJ4B-ArBEXNS12YXYx'
+    headers = {'Authorization': 'bearer %s' % key}
+    return headers
 
-def store_info(request, business_data):
-    wanted_info = {}
-    for line in business_data:
-        restaurant_obj = Restaurant_info(line['name'])
-        restaurant_obj.id = line['id']
-        restaurant_obj.alias = line['alias']
-        restaurant_obj.is_closed = line['is_closed']
-        restaurant_obj.categories = line['categories']
-        restaurant_obj.rating = line['rating']
-        restaurant_obj.coordinates = line['coordinates']
-        restaurant_obj.transactions = line['transactions']
-        if 'price' in line:
-            restaurant_obj.price = line['price']
-        restaurant_obj.location = line['location']
-
-        wanted_info[restaurant_obj.name] = json.loads(json.dumps(restaurant_obj.__dict__))
-
-    return wanted_info
-
-def send_cred(request):
-    headers = credentials(request)
-    url = create_url(request)
-    params = parameters(request, 'Waukegan')
+def send_cred(location):
+    headers = credentials()
+    url = create_url()
+    params = parameters(location)
     response = requests.get(url = url,
                             params = params,
                             headers = headers)
     return response
 
-def fix_info(request):
-    response = send_cred(request)
-    fixed_data = json.loads(response.content.decode('UTF-8'))
+def restaurant_collection(restaurant_data):
+    all_restaurant_info = {}
+    for restaurant in restaurant_data:
+        restaurant_obj = Restaurant_info(restaurant['name'])
+        restaurant_obj.id = restaurant['id']
+        restaurant_obj.alias = restaurant['alias']
+        restaurant_obj.is_closed = restaurant['is_closed']
+        restaurant_obj.categories = restaurant['categories']
+        restaurant_obj.rating = restaurant['rating']
+        restaurant_obj.coordinates = restaurant['coordinates']
+        restaurant_obj.transactions = restaurant['transactions']
+        if 'price' in restaurant:
+            restaurant_obj.price = restaurant['price']
+        restaurant_obj.location = restaurant['location']
 
-    business_data = fixed_data['businesses']
-    wanted_store_info = store_info(request, business_data)
+        all_restaurant_info[restaurant_obj.name] = json.loads(json.dumps(restaurant_obj.__dict__))
 
-    return wanted_store_info
+    return all_restaurant_info
 
-def random_picker(price, rating):
-    wanted_store_info = fix_info()
+def format_info(location):
+    response = send_cred(location)
+    restaurant_info = json.loads(response.content.decode('UTF-8'))
+
+    business_data = restaurant_info['businesses']
+    all_restaurant_info = restaurant_collection(business_data)
+
+    return all_restaurant_info
+
+def random_picker(price, rating, location):
+    restaurant_info = format_info(location)
     options = []
     price_ranker = price.count("$")
-    for key, value in wanted_store_info.items():
-        if value['price'] != None:
-            if value['price'].count("$") <= price_ranker:
-                if value['is_closed'] != "False":
-                    if value['rating'] >= rating:
-                        options.append(value['name'])
+    for restaurant_name, restaurant_description in restaurant_info.items():
+        if restaurant_description['price'] != None:
+            if restaurant_description['price'].count("$") <= price_ranker:
+                if restaurant_description['is_closed'] != "False":
+                    if restaurant_description['rating'] >= rating:
+                        options.append(restaurant_description)
     choice = random.choice(options)
     return choice
 
-def display(request, *args, **kwargs):
-    wanted_store_info = fix_info(request)
-    print(request.GET)
+def display(location, *args, **kwargs):
+    restaurant_info = format_info(location)
     test = {
-        'restaurant_dict': wanted_store_info
+        'restaurant_dict': restaurant_info
     }
-    return render(request, 'home.html', test)
+    return test
+    # return render(request, 'home.html', test)
