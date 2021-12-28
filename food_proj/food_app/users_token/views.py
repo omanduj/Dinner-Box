@@ -21,7 +21,7 @@ db = (
     client.user_tokens
 )
 
-# curl http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjpudWxsLCJleHAiOjE2NDA1MTMyMTd9.JHjBZ6o0z5xg_Yrxl2vD0K77PzQAIiaK8I6PIkGkQPs}"
+# curl http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjpudWxsLCJleHAiOjE2NDA3MzE2ODd9.K7PIesOZh8tHjsBxjsxKQIOk_YRE9zexnE_qBfRIGB0}" --data 'cost=$&rating=2'
 
 def check_for_token(func):
     @wraps(func)
@@ -29,16 +29,14 @@ def check_for_token(func):
         # look up jwt.decode
         token = request.headers['Authorization']
         token = token.split(':')
-        bearer = token[0][1:]
-        token_given = token[-1][0:-1]
-        token_info = {bearer: token_given}
-        if not token_info[bearer]:
+        token = token[-1][0:-1]
+        if not token:
             return JsonResponse({'message': 'Missing Token!'}), 401
         try:
-            data = jwt.decode(token_info['Bearer'], app['SECRET_KEY'], algorithms=["HS256"])
+            data = jwt.decode(token, app['SECRET_KEY'], algorithms=["HS256"])
         except Exception as e:
             return JsonResponse({'Message': 'Expired Token'})
-        return func(request, token_given, *args, **kwargs)
+        return func(request, token, *args, **kwargs)
     return wrapped
 
 def index(request):
@@ -57,11 +55,12 @@ def public(request):
 @csrf_exempt
 def auth(request, token):
     user = db.user_tokens.find_one({"token": token})
+    cost = request.POST.get('cost')
+    rating = int(request.POST.get('rating'))
+
     my_location = geocoder.ip('me')
-    cost = request.POST.get('price')
-    rating = request.POST.get('rating')
-    my_restaurant = random_picker('$', 2, my_location.address)
-    print(request.POST, cost, rating)
+
+    my_restaurant = random_picker(cost, rating, my_location.address)
 
     response_dict = {'Success': 'Hello %s, Here is your restaurant:' % user['email'],
                         'Restaurant Name': my_restaurant['name'],
@@ -69,6 +68,7 @@ def auth(request, token):
                         'Rating': my_restaurant['rating'],
                         'Price': my_restaurant['price'],
                         'Location': my_restaurant['location']['address1']}
+                        
     return JsonResponse(response_dict)
 
 def login(request):

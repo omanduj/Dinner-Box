@@ -23,7 +23,7 @@ from users.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('get_food/', display),
-    path('users_token/', index),
+    path('token/', index),
     path('login/', login),
     path('public/', public),
     path('auth/', auth),
