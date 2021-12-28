@@ -24,6 +24,9 @@ db = (
 # curl http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjpudWxsLCJleHAiOjE2NDA3MzE2ODd9.K7PIesOZh8tHjsBxjsxKQIOk_YRE9zexnE_qBfRIGB0}" --data 'cost=$&rating=2'
 
 def check_for_token(func):
+    """Purpose: To verify token is sent in request
+    Return Value: wrapped = Verification
+    """
     @wraps(func)
     def wrapped(request, *args, **kwargs):
         # look up jwt.decode
@@ -40,6 +43,10 @@ def check_for_token(func):
     return wrapped
 
 def index(request):
+    """Purpose: Issue token to new and existing users
+    Parameters: request
+    Return Value: rendering of a template
+    """
     request.session['logged_in'] = False
     print(request.session.get('logged_in'))
     if not request.session.get('logged_in'):
@@ -49,11 +56,20 @@ def index(request):
         return "Currently Not Logged In"
 
 def public(request):
+    """Purpose: To serve as public endpoint where all users can view information
+    Parameters: request
+    Return Value: JsonResponse - response showing request was successful
+    """
     return JsonResponse({'Success': "Anyone can view this"})
 
 @check_for_token
 @csrf_exempt
 def auth(request, token):
+    """Purpose: To serve as endpoint where users pass in token and data to receive desired response
+    Parameters: request
+                token - The issued token used for verification
+    Return Value: JsonResponse - response showing request was successful with desired information
+    """
     user = db.user_tokens.find_one({"token": token})
     cost = request.POST.get('cost')
     rating = int(request.POST.get('rating'))
@@ -68,10 +84,15 @@ def auth(request, token):
                         'Rating': my_restaurant['rating'],
                         'Price': my_restaurant['price'],
                         'Location': my_restaurant['location']['address1']}
-                        
+
     return JsonResponse(response_dict)
 
 def login(request):
+    """Purpose: To serve as endpoint where users obtain a token
+    Parameters: request
+    Return Value: JsonResponse - response showing request was successful with desired information or
+                                response showing request has failed
+    """
     if request.method == 'POST':
         user = db.user_tokens.find_one({"email": request.POST.get("email")})
         if user == None:
