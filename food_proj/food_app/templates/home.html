@@ -1,8 +1,0 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <h1>FROGS</h1>
-    {% for key, value in restaurant_dict.items %}
-        <p>{{key}}, {{value}}, {{value.name}}</p>
-    {% endfor %}
-{% endblock %}

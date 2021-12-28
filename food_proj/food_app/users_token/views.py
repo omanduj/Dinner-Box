@@ -10,7 +10,7 @@ import datetime
 import pymongo
 import requests
 import geocoder
-import json
+
 
 
 app = {}
@@ -58,8 +58,10 @@ def public(request):
 def auth(request, token):
     user = db.user_tokens.find_one({"token": token})
     my_location = geocoder.ip('me')
+    cost = request.POST.get('price')
+    rating = request.POST.get('rating')
     my_restaurant = random_picker('$', 2, my_location.address)
-    print(json.loads(request.POST))
+    print(request.POST, cost, rating)
 
     response_dict = {'Success': 'Hello %s, Here is your restaurant:' % user['email'],
                         'Restaurant Name': my_restaurant['name'],

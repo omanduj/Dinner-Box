@@ -18,6 +18,7 @@ from django.urls import path
 
 from get_food.views import display
 from users_token.views import index, login, public, auth
+from users.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('login/', login),
     path('public/', public),
     path('auth/', auth),
+    path('home/', home)
 ]

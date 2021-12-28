@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Authorization Form</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Token Request</title>
+</head>
+
+{% extends 'base.html' %}
+
+{% block content %}
     <body>
-        <form action="/login/" method="POST">{% csrf_token %}
+        <form action="/login/" method="POST">
+            {% csrf_token %}
             <label for="your_name">Your Email: </label>
             <input type="email" name="email" placeholder="email">
             <label for="your_password">Password: </label>
@@ -13,4 +16,5 @@
             <input type="submit" value="login">
         </form>
     </body>
-</html>
+
+{% endblock %}
