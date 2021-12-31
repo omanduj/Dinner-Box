@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='card'>
+        <form name="Signup_Form" method="POST" action="/signup/">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="username" maxlength="15" name="username" class="field" required>
+
+            <label for="email">Email</label>
+            <input type="email" maxlength="100" name="email" class="field" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" class="password" required>
+
+            <input style="float: left; margin-left: 2em; width: 40%;" type="submit" value="Sign Up" class="btn" required>
+        </form>
+    </div>
+
+    <div class='card'>
+        <form name="Login_Form" method="POST" action="/login/">
+            {% csrf_token %}
+            <label for="email">Email</label>
+            <input type="email" maxlength="100" name="email" class="field" required>
+
+            <label for="password">Password</label>
+            <input type="password" name="password" class="password" required>
+
+            <input style="float: left; margin-left: 2em; width: 40%;" type="submit" value="Login" class="btn" required>
+        </form>
+    </div>
+
+{% endblock %}
