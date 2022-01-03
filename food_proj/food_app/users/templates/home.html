@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class='card'>
-        <form name="Signup_Form" method="POST" action="/signup/">
+        <form name="Signup_Form" method="POST" action="/user/signup/">
             {% csrf_token %}
             <label for="username">Username</label>
             <input type="username" maxlength="15" name="username" class="field" required>
@@ -18,7 +18,7 @@
     </div>
 
     <div class='card'>
-        <form name="Login_Form" method="POST" action="/login/">
+        <form name="Login_Form" method="POST" action="/user/login/">
             {% csrf_token %}
             <label for="email">Email</label>
             <input type="email" maxlength="100" name="email" class="field" required>

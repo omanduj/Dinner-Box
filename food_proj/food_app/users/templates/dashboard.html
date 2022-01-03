@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for key, value in user.items %}
+        <h3>{{ key }} - {{ value }}</h3>
+    {% endfor %}
+    <a href="/user/signout" class="btn btn--secondary">Sign Out</a>
+{% endblock %}

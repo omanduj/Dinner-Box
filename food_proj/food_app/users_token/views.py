@@ -48,11 +48,9 @@ def index(request):
     Return Value: rendering of a template
     """
     request.session['logged_in'] = False
-    print(request.session.get('logged_in'))
     if not request.session.get('logged_in'):
         return render(request, 'login.html')
     else:
-        print(request.session)
         return "Currently Not Logged In"
 
 def public(request):
@@ -87,7 +85,7 @@ def auth(request, token):
 
     return JsonResponse(response_dict)
 
-def login(request):
+def token_login(request):
     """Purpose: To serve as endpoint where users obtain a token
     Parameters: request
     Return Value: JsonResponse - response showing request was successful with desired information or

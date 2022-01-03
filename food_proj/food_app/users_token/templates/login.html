@@ -7,7 +7,7 @@
 
 {% block content %}
     <body>
-        <form action="/login/" method="POST">
+        <form action="/token/login/" method="POST">
             {% csrf_token %}
             <label for="your_name">Your Email: </label>
             <input type="email" name="email" placeholder="email">
