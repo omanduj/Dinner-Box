@@ -1,33 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class='card'>
-        <form name="Signup_Form" method="POST" action="/user/signup/">
-            {% csrf_token %}
-            <label for="username">Username</label>
-            <input type="username" maxlength="15" name="username" class="field" required>
+    <div class="card-wrapper1">
+        <div>
+            <div class="center">
+                <h1 class="title">Dinner Box</h1>
+                <h2 class="subtitle">Find the Food You Want</h2>
+            </div>
+            <div>
+                <div class="card">
+                    <h1 class="center">Login</h1>
+                    <form name="Login_Form" method="POST" action="/user/login/">
+                        {% csrf_token %}
+                        <label for="email">Email</label>
+                        <input type="email" maxlength="100" name="email" class="field" required>
 
-            <label for="email">Email</label>
-            <input type="email" maxlength="100" name="email" class="field" required>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="field" required>
 
-            <label for="password">Password</label>
-            <input type="password" name="password" class="password" required>
+                        <input type="submit" value="Login" class="btn" required>
+                    </form>
+                    <div class="center">
+                        <a href="/token">Or Get A Token!</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <h1 class="center">Create an Account</h1>
+                    <form name="Signup_Form" method="POST" action="/user/signup/">
+                        {% csrf_token %}
+                        <label for="username">Username</label>
+                        <input type="username" maxlength="15" name="username" class="field" required>
 
-            <input style="float: left; margin-left: 2em; width: 40%;" type="submit" value="Sign Up" class="btn" required>
-        </form>
+                        <label for="email">Email</label>
+                        <input type="email" maxlength="100" name="email" class="field" required>
+
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="field" required>
+
+                        <input  type="submit" value="Sign Up" class="btn" required>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class='card'>
-        <form name="Login_Form" method="POST" action="/user/login/">
-            {% csrf_token %}
-            <label for="email">Email</label>
-            <input type="email" maxlength="100" name="email" class="field" required>
-
-            <label for="password">Password</label>
-            <input type="password" name="password" class="password" required>
-
-            <input style="float: left; margin-left: 2em; width: 40%;" type="submit" value="Login" class="btn" required>
-        </form>
-    </div>
-
 {% endblock %}

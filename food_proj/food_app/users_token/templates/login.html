@@ -6,15 +6,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <body>
-        <form action="/token/login/" method="POST">
+    <div class="card2">
+        <h1 class="center">Get Token:</h1>
+        <form name="login_form" method="POST" id="form_login" onsubmit="return false">
             {% csrf_token %}
             <label for="your_name">Your Email: </label>
-            <input type="email" name="email" placeholder="email">
+            <input type="email" name="email" placeholder="email" class="field">
+
             <label for="your_password">Password: </label>
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="password" placeholder="Password" class="field">
+
             <input type="submit" value="login">
         </form>
-    </body>
+        <div class="center">
+            show token here!
+        </div>
+    </div>
 
+    <script type="text/javascript">
+
+    </script>
 {% endblock %}
