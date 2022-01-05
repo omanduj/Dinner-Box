@@ -11,7 +11,9 @@ $("form[name=login_form]").submit(function(e){     //when form=X, on submit, do 
         dataType: "json",
         success: function(resp) {
             console.log(resp);          //Used to show info on html inspect window
-            console.log('hi');
+            var txt2 = $("<h2></h2>").text(Object.keys(resp));
+            $('#token_title').html(txt2);
+            $('#token_value').html(Object.values(resp));
         },
         error: function(resp) {
             console.log(resp);

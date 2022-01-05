@@ -1,10 +1,9 @@
 /*
   Colors: http://getuicolors.com
 */
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
 /* Setup */
 :root {
   --black: #000000;
@@ -106,8 +105,6 @@ p {
     box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
     border-radius: 50px;
     background: white;
-
-
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -128,6 +125,7 @@ p {
     border-radius: 5px;
     background: white;
 }
+
 .card-wrapper1 {
   margin: 0 auto;
   padding: 90px 30px;
@@ -138,6 +136,7 @@ p {
   background-position: -10% 80%;
   height: 44.5em;
   background-size: 100%;
+  min-width: 900px;
 }
 
 .hero-bg {
@@ -148,20 +147,15 @@ p {
     font-family: 'Dosis', sans-serif;
     font-size: 150%;
 }
+
+.title_token {
+    font-family: 'ABeeZee', sans-serif;
+}
+
 .content {
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 150%;
     margin-top: 1em;
-}
-
-.user_info {
-    font-family: 'Dosis', sans-serif;
-}
-.content_votes {
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 150%;
-    margin-top: 1em;
-    margin-bottom: -.5em;
 }
 
 .content_image {
@@ -323,4 +317,40 @@ input[type=submit] {
       border-radius: 5px;
       background: white;
     }
+}
+
+#token_title {
+    position: relative;
+    word-wrap:break-word;
+}
+
+#token_value {
+    position: relative;
+    word-wrap:break-word;
+}
+
+#token_title {
+    font-family: 'ABeeZee', sans-serif;
+}
+
+#token_value {
+    font-family: 'ABeeZee', sans-serif;
+}
+
+#signup_page {
+    margin-left: .5em;
+    margin-top: -3em;
+}
+
+.card_cover {
+    margin: 0 auto;
+     padding: 90px 30px;
+     flex-wrap: wrap;
+     justify-content: center;
+     display: flex;
+     background: url('/static/images/fruits.jpg');
+     background-position: 0% 50%;
+     height: 44.5em;
+     min-width: 900px;
+     background-size: 100%;
 }

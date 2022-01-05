@@ -104,7 +104,7 @@ def token_login(request):
             # db.user_tokens.insert_one({"email": request.POST.get("email"), 'password': password, 'token': {str(datetime.datetime.utcnow()): token}})
             db.user_tokens.insert_one({"email": request.POST.get("email"), 'password': password, 'token': token_en})
 
-            return JsonResponse({'Success': 'You have been Registered', 'token': token_en})
+            return JsonResponse({'You have been Registered': token_en})
 
         elif user != None:
             if user['email'] == request.POST.get("email") and pbkdf2_sha256.verify(request.POST.get('password'), user['password']):

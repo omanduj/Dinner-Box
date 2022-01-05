@@ -1,29 +1,34 @@
 <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>Token Request</title>
 </head>
 
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="card2">
-        <h1 class="center">Get Token:</h1>
-        <form name="login_form" method="POST" id="form_login" onsubmit="return false">
-            {% csrf_token %}
-            <label for="your_name">Your Email: </label>
-            <input type="email" name="email" placeholder="email" class="field">
+    <div class='card_cover'>
+        <div class='card2'>
+            <form action='/home/'>
+                <input class='btn' id='signup_page' type='submit' value='home page' />
+            </form>
+            <div class='center'>
+                <h1 class='title_token'>Get a Token</h1>
+            </div>
+            <form name='login_form' method='POST' id='form_login' onsubmit='return false'>
+                {% csrf_token %}
+                <label for='your_name'>Your Email: </label>
+                <input type='email' name='email' placeholder='email' class='field'>
 
-            <label for="your_password">Password: </label>
-            <input type="password" name="password" placeholder="Password" class="field">
+                <label for='your_password'>Password: </label>
+                <input type='password' name='password' placeholder='Password' class='field'>
 
-            <input type="submit" value="login">
-        </form>
-        <div class="center">
-            show token here!
+                <input type='submit' value='login' class='btn'>
+                <div class='center' id='token_title'>
+                    Token Will Appear Here!
+                </div>
+                <div class='center' id='token_value'>
+                </div>
+            </form>
         </div>
     </div>
-
-    <script type="text/javascript">
-
-    </script>
 {% endblock %}
