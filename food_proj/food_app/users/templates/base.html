@@ -11,9 +11,10 @@
 
 <body>
     {% block content %}
-    Replace Me
     {% endblock %}
-    <!-- this allows this template to be used in other html files -->
+    {% load static %}
+    <script src="{% static '/js/jquery.js' %}" type="text/javascript"></script>
+    <script src="{% static '/js/scripts.js' %}" type="text/javascript"></script>
 </body>
 
 </html>
