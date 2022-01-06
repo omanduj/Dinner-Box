@@ -21,7 +21,7 @@ db = (
     client.user_tokens
 )
 
-# curl http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjpudWxsLCJleHAiOjE2NDA3MzE2ODd9.K7PIesOZh8tHjsBxjsxKQIOk_YRE9zexnE_qBfRIGB0}" --data 'cost=$&rating=2'
+# curl http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjpudWxsLCJleHAiOjE2NDE0MzE0ODJ9.Dhbb6W3kqhDLKZaQCsQWEWkUM8g7ZtvAyYUB3g8tTjk}" --data 'cost=$&rating=2'
 
 def check_for_token(func):
     """Purpose: To verify token is sent in request

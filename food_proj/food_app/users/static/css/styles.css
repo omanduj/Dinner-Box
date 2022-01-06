@@ -354,3 +354,16 @@ input[type=submit] {
      min-width: 900px;
      background-size: 100%;
 }
+
+.card_cover2 {
+    margin: 0 auto;
+     padding: 90px 30px;
+     flex-wrap: wrap;
+     justify-content: center;
+     display: flex;
+     background: url('/static/images/oranges.jpg');
+     background-position: 0% 50%;
+     height: 44.5em;
+     min-width: 900px;
+     background-size: 100%;
+}
