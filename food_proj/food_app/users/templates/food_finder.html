@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='card_cover2'>
+    <div class='card2'>
+        <form action='/user/dashboard/'>
+            <input class='btn' id='signup_page' type='submit' value='home page' />
+        </form>
+        <form class="" name='find_food' method="POST" onsubmit='return false'>
+            {% csrf_token %}
+            <label for='cost'>Max Cost (From $ to $$$): </label>
+            <input type='cost' name='cost' placeholder='$$$' class='field' required>
+
+            <label for='rating'>Min Rating (From 0 to 4): </label>
+            <input type='rating' name='rating' placeholder='0' class='field' required>
+
+            <input type="submit" value="Search" class='btn'>
+        </form>
+        <div class='center' id='name'>
+        </div>
+        <div class='center' id='rating'>
+        </div>
+        <div class='center' id='genre'>
+        </div>
+        <div class='center' id='price'>
+        </div>
+        <div class='center' id='location'>
+        </div>
+    </div>
+</div>
+{% endblock %}
