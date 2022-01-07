@@ -9,15 +9,18 @@
         {% for key, value in user.items %}
             <h3>{{ key }} - {{ value }}</h3>
         {% endfor %}
-        <a href="/user/signout" class="btn btn--secondary">Sign Out</a>
+        <a href="/user/signout/" class="btn btn--secondary">Sign Out</a>
     {% endif %}
     <body>
         <div class="">
-            <form class="" action="/user/foodpicker" method="GET">
+            <form class="" action="/user/foodpicker/" method="GET">
                 <input type='submit' value='Get Some Food!' class='btn'>
             </form>
             <form class="" action="/user/create-notes" method="GET">
                 <input type='submit' value='Notes' class='btn'>
+            </form>
+            <form class="" action="/user/view-notes" method="GET">
+                <input type='submit' value='My Notes' class='btn'>
             </form>
         </div>
     </body>
