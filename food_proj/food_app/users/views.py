@@ -45,7 +45,7 @@ def signup_user(request):  # used in routes signup endpoint
 
 # playgirllibby
 
-def login_user(request):  # used in routes as login endpoint
+def login_user(request):
     """Purpose: To login a user to their account
     Parameters: N/a
     Return Value: if user not found - Error response
@@ -227,7 +227,9 @@ def login(request):
 
     if request.method == 'GET':
         if request.session['user']:
-            return render(request, 'dashboard.html', {'user': request.session['user']})
+            user = get_one_user(request.session['user']['email'])
+            del user['password']
+            return render(request, 'dashboard.html', {'user': user})
         if response == 'Invalid Credentials':
             return render(request, 'dashboard.html', {'response': response})
 

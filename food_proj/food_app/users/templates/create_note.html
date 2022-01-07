@@ -2,22 +2,31 @@
 
 {% block content %}
     <!-- <div class='card_cover'> -->
-        <div class='card2'>
-            <form action='/user/create-notes' method='POST'>
+        <div class='card3'>
+            <form action='/user/dashboard/'>
+                <input class='btn' id='signup_page' type='submit' value='home page' />
+            </form>
+            <form name='restaurant_note' method='POST'>
                 {% csrf_token %}
                 <label for='restaurant'>Restaurant Name: </label>
                 <input type='restaurant' name='restaurant' placeholder='Restaurant' class='field' required>
 
-                <label for='restaurant_note'>Note: </label>
-                <input type='restaurant_note' name='restaurant_note' placeholder='Note' class='field' required>
-
                 <label for='personal_rating'>Rating: </label>
                 <input type='personal_rating' name='personal_rating' placeholder='Rating' class='field' required>
 
-                <input type='submit' value='Add Note' class='btn'>
+                <!-- <label for='restaurant_note' contenteditable="true">Note: </label>
+                <input type='restaurant_note' name='restaurant_note' placeholder='Note' class='field' required> -->
 
-                <div class='center' id='token_value'>
+                <label for='restaurant_note'>Note: </label>
+                <textarea type='restaurant_note' name='restaurant_note' placeholder="Note"></textarea>
+
+                <input id='token_gs' type='submit' value='Add Note' class='btn'>
+
+                <div class='center' id='add_note_response'>
                 </div>
+
+                <!-- <div class='center' id='token_gs'>gs
+                </div> -->
             </form>
         </div>
     <!-- </div> -->

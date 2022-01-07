@@ -30,3 +30,11 @@ def add_note(email, name, note, rating):
     if db.users.update({'email': email}, {'$set': {'Notes.{}'.format(name): {'note': note, 'rating': rating}}}):
         return 'Note Added'
     return 'Note Was Not Added'
+
+def check_note_exists(email, name):
+    note = db.users.find_one({'email': email}, {'Notes.{}'.format(name)})
+    return note
+
+def get_user_notes(email):
+    notes = db.users.find({'email': email}, {'Notes'})
+    return notes

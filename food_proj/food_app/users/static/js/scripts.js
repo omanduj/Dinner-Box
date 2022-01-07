@@ -30,7 +30,7 @@ $("form[name=find_food]").submit(function(e){     //when form=X, on submit, do t
     var data = $form.serialize();
 
     $.ajax({
-        url: "/user/foodpicker",
+        url: "/user/foodpicker/",
         type: "POST",        //Type of operation
         data: data,
         dataType: "json",
@@ -61,6 +61,34 @@ $("form[name=find_food]").submit(function(e){     //when form=X, on submit, do t
             console.log(resp);
             alert('Please provide valid inputs')
                             //of signup class. So it will print out the error whose key is error
+        }
+    })
+    e.preventDefault();
+});
+
+$("form[name=restaurant_note]").submit(function(e){     //when form=X, on submit, do this
+
+    var $form = $(this);
+    var $error = $form.find(".error");
+    var data = $form.serialize();
+
+    $.ajax({
+        url: "/user/create-notes/",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+            console.log(resp);
+            var txt = resp['success'] + ' has been added'
+            $('#add_note_response').html(txt);
+
+            var txt = resp['Error']
+            $('#add_note_response').html(txt);
+        },
+        error: function(resp) {
+            console.log(resp);
+            alert('Please provide valid inputs')
+            $error.text(resp.responseJSON.error).removeClass('error--hidden');
         }
     })
     e.preventDefault();

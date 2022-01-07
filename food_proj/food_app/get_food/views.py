@@ -65,7 +65,6 @@ def restaurant_collection(restaurant_data):
 def format_info(location):
     response = send_cred(location)
     restaurant_info = json.loads(response.content.decode('UTF-8'))
-
     business_data = restaurant_info['businesses']
     all_restaurant_info = restaurant_collection(business_data)
 
