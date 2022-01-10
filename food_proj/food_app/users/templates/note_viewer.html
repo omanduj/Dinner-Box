@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if error %}
+        <div class='card5 center'>
+            <div class="no_notes_container">
+                <form action='/user/dashboard/'>
+                    <input class='btn' id='signup_page' type='submit' value='Home Page'/>
+                </form>
+                <div class="text_no_notes">
+                    {{ error }}
+                    <p class="subtitle2">Head on over to the Note Adder to store the memories of your favorite places!</p>
+                </div>
+                <form action='/user/create-notes/'>
+                    <input class='btn' type='submit' value='Note Adder'/>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if notes %}
+        <form action='/user/dashboard/'>
+            <div class="test">
+                <input class='btn' type='submit' value='Home Page'/>
+            </div>
+        </form>
+        {% for key, value in notes.Notes.items %}
+            <div class='card4'>
+                <form name="delete_note" method="POST">
+                    {% csrf_token %}
+                    <input name='restaurant_name' value='{{ key }}' hidden>
+                    <button onclick="alert('Deleting item')" id="deleter" type="submit" class="AClass">
+                        <span>&times;</span>
+                    </button>
+                </form>
+                <div class="center_notes">
+                    <p>{{ key }}</p>
+                    <p>Rating: {{ value.rating }}</p>
+                    <u>Note:</u>
+                    <p> {{ value.note }} </p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+<!-- order by earliest/latest and by alphabet -->
+<!-- Delete a Note -->

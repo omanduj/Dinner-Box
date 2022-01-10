@@ -19,7 +19,7 @@ from django.urls import path
 from get_food.views import display
 from users_token.views import index, token_login, public, auth
 from users.views import home, signup, login, signout, food_random_picker
-from notes.views import create_note, view_notes
+from notes.views import create_note, view_notes, delete_user_note
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,9 +35,10 @@ urlpatterns = [
     path('user/signout/', signout),
     path('user/dashboard/', login),
     path('user/notes/', login),
-    path('user/view-notes', view_notes),
 
     path('user/create-notes/', create_note),
+    path('user/view-notes', view_notes),
+    path('user/delete-note/', delete_user_note),
 
     path('user/foodpicker/', food_random_picker)
 ]

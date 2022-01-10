@@ -93,3 +93,27 @@ $("form[name=restaurant_note]").submit(function(e){     //when form=X, on submit
     })
     e.preventDefault();
 });
+
+
+
+$("form[name=delete_note]").submit(function(e){     //when form=X, on submit, do this
+
+    var $form = $(this);
+    var $error = $form.find(".error");
+    var data = $form.serialize();
+
+    $.ajax({
+        url: "/user/delete-note/",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+            console.log(resp);
+        },
+        error: function(resp) {
+            console.log(resp);
+            $error.text(resp.responseJSON.error).removeClass('error--hidden');
+        }
+    })
+    e.preventDefault();
+});

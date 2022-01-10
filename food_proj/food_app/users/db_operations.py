@@ -38,3 +38,22 @@ def check_note_exists(email, name):
 def get_user_notes(email):
     notes = db.users.find({'email': email}, {'Notes'})
     return notes
+
+def delete_note(email, restaurant_name):
+    # notes = db.users.delete_one({'email': email, 'Notes.{}'.format(restaurant_name)})
+
+
+    db.users.update(
+        {"email": email},
+        {"$set": {"Notes.{}".format(restaurant_name): ""}},
+    )
+    db.users.update(
+        {"email": email},
+        {"$unset": {"Notes.{}".format(restaurant_name): ""}},
+    )
+    note_found = db.users.find(
+        {"email": email}
+    )
+
+    notes_found = list(note_found)[0]['Notes']
+    return notes_found
