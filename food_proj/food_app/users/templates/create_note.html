@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <!-- <div class='card_cover'> -->
-        <div class='card3'>
+    <div class='card_cover_flowers'>
+        <div class='card_flowers'>
             {% csrf_token %}
-            <form action='/user/dashboard/'>
-                {% csrf_token %}
-                <input class='btn' id='signup_page' type='submit' value='home page'/>
-            </form>
+            <div class="row">
+              <div class="column">
+                  <form action='/user/dashboard/'>
+                      <input class='btn' id='signup_page' type='submit' value='home page'/>
+                  </form>
+              </div>
+              <div class="column">
+                  <form action='/user/foodpicker/'>
+                      <input class='btn' id='add_note' type='submit' value='Randomizer'/>
+                  </form>
+              </div>
+            </div>
+
+
             <form name='restaurant_note' method='POST'>
                 {% csrf_token %}
                 <label for='restaurant'>Restaurant Name: </label>
@@ -15,9 +25,6 @@
 
                 <label for='personal_rating'>Rating: </label>
                 <input type='personal_rating' name='personal_rating' placeholder='Rating' class='field' required>
-
-                <!-- <label for='restaurant_note' contenteditable="true">Note: </label>
-                <input type='restaurant_note' name='restaurant_note' placeholder='Note' class='field' required> -->
 
                 <label for='restaurant_note'>Note: </label>
                 <textarea type='restaurant_note' name='restaurant_note' placeholder="Note"></textarea>
@@ -31,5 +38,5 @@
                 </div> -->
             </form>
         </div>
-    <!-- </div> -->
+    </div>
 {% endblock %}

@@ -29,7 +29,7 @@ def signup_user(request):  # used in routes signup endpoint
         "_id": uuid.uuid4().hex,
         "name": request.POST.get('username'),
         "email": request.POST.get('email'),
-        "password": request.POST.get('password')
+        "password": request.POST.get('password'),
     }
 
     user["password"] = pbkdf2_sha256.encrypt(user["password"])
@@ -42,8 +42,6 @@ def signup_user(request):  # used in routes signup endpoint
         return {'Success': 'User Created!'}
 
     return {"Error": "Sign Up failed"}
-
-# playgirllibby
 
 def login_user(request):
     """Purpose: To login a user to their account
@@ -59,134 +57,6 @@ def login_user(request):
     return ("Invalid Credentials")
 
 
-#     def add_ballot_name(self, item):
-#         """Purpose: To add ballot
-#         Parameters: item - ballot name given by user
-#         Return Value: Json Response
-#         """
-#         session["ballot_items"] = item
-#         db.users.update(
-#             {"email": session["user"]["email"]},
-#             {"$set": {"ballot_items.{}".format(item): {}}},
-#         )
-#         return jsonify({"success": "Ballot added"}), 200
-#
-#     def add_ballot_item(self, item_name, image, description):
-#         """Purpose: To add information for a given item in a ballot
-#         Parameters: item_name - Name of given item
-#                     image - URL of inputted image
-#                     description - Description of an item
-#         Return Value: Json Response
-#         """
-#         db.users.update(
-#             {"email": session["user"]["email"]},
-#             {
-#                 "$set": {
-#                     "ballot_items.{}.{}".format(session["ballot_items"], item_name): {
-#                         "image": image,
-#                         "description": description,
-#                         "votes": 0,
-#                     }
-#                 }
-#             },
-#         )
-#         return jsonify({"success": "Item added"}), 200
-#
-#
-# def get_ballots():
-#     """Purpose: To get all ballots of a given user for display on dashboard
-#     Parameters: N/a
-#     Return Value: If ballots found, a Dictionary containing all information of all ballots
-#                     If no ballots found, an error code
-#     """
-#     new_dict = {}
-#     ballots = db.users.find({"email": session["user"]["email"]})
-#     ballots = list(ballots)
-#
-#     for item in ballots:
-#         name = item["name"]
-#         new_dict[name] = item
-#
-#     my_keys = list(new_dict[session["user"]["name"]].keys())
-#
-#     if "ballot_items" in my_keys:
-#         ballot_item_dict = new_dict[session["user"]["name"]]["ballot_items"]
-#         return ballot_item_dict
-#     return {"No Ballots": "Make Some Ballots!"}
-#
-#
-# def get_email():
-#     """Purpose: To obtain email of the user
-#     Parameters: N/a
-#     Return Value: Users email address
-#     """
-#     return session["user"]["email"]
-#
-#
-# def del_img(item, ballot_name):
-#     """Purpose: To remove an item from a ballot
-#     Parameters: item - Name of ballot item that will be removed
-#                 ballot_name - Name of ballot that item is found in
-#     Return Value:
-#     """  # find given value and sets it to ''
-#     # then finds where given route is set to '' and removes it
-#     db.users.update(
-#         {"email": session["user"]["email"]},
-#         {"$set": {"ballot_items.{}.{}".format(ballot_name, item): ""}},
-#     )
-#     db.users.update(
-#         {"email": session["user"]["email"]},
-#         {"$unset": {"ballot_items.{}.{}".format(ballot_name, item): ""}},
-#     )
-#     x = db.users.find(
-#         {"email": session["user"]["email"]}, {"ballot_items.{}".format(ballot_name)}
-#     )
-#     x = list(x)
-#     if len(x[0]["ballot_items"][ballot_name]) == 0:
-#         db.users.update(
-#             {"email": session["user"]["email"]},
-#             {"$unset": {"ballot_items.{}".format(ballot_name): ""}},
-#         )
-#
-#
-# def get_items_voter(ballot_name):
-#     """Purpose: To obtain items of a given ballot
-#     Parameters: ballot_name - Ballot name
-#     Return Value: Items found in ballot or Error Response
-#     """
-#     new_dict = {}
-#     ballots = db.users.find({"email": session["user"]["email"]})
-#     ballots = list(ballots)
-#     for item in ballots:
-#         name = item["name"]
-#         new_dict[name] = item
-#     ballots = ballots[0]  # converts list of dict to a dict
-#
-#     if not ballots["ballot_items"][ballot_name]:
-#         return {"error": "No items found"}
-#     if ballots["ballot_items"][ballot_name]:
-#         return ballots["ballot_items"][ballot_name]
-#     return {"error": "No items found"}
-#
-#
-# def vote(item, ballot_name):
-#     """Purpose: To allow voting functionality
-#     Parameters: item - Name of item that is being voted for
-#                 ballot_name - Name of the ballot the item belongs to
-#     Return Value: The amount of votes for a given item
-#     """
-#     db.users.update(
-#         {"email": session["user"]["email"]},
-#         {"$inc": {"ballot_items.{}.{}.votes".format(ballot_name, item): 1}},
-#     )
-#     ballots = db.users.find(
-#         {"email": session["user"]["email"]}, {"ballot_items.{}".format(ballot_name)}
-#     )
-#     ballots = list(ballots)[0]
-#     total_votes = ballots["ballot_items"][ballot_name][item]["votes"]
-#     return total_votes
-
-# JsonResponse({'You have been Registered': token_en})
 
 def food_random_picker(request):
     if request.method == 'GET':
@@ -221,6 +91,7 @@ def login(request):
     if request.method == 'POST':
         response = login_user(request)
         if response != 'Invalid Credentials':
+            del response['Notes']
             return render(request, 'dashboard.html', {'user': response})
         if response == 'Invalid Credentials':
             return render(request, 'dashboard.html', {'response': response})
