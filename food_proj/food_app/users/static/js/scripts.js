@@ -117,3 +117,26 @@ $("form[name=delete_note]").submit(function(e){     //when form=X, on submit, do
     })
     e.preventDefault();
 });
+
+// $("form[name=order_notes]").submit(function(e){     //when form=X, on submit, do this
+//
+//     var $form = $(this);
+//     var $error = $form.find(".error");
+//     var data = $form.serialize();
+//
+//     $.ajax({
+//         url: "/user/order/",
+//         type: "POST",
+//         data: data,
+//         dataType: "json",
+//         success: function(resp) {
+//             console.log(resp);
+//             $('#add_note_response').html(resp);
+//         },
+//         error: function(resp) {
+//             console.log(resp);
+//             $error.text(resp.responseJSON.error).removeClass('error--hidden');
+//         }
+//     })
+//     e.preventDefault();
+// });

@@ -19,18 +19,32 @@
     {% endif %}
 
     {% if notes %}
+
+        <!-- <form name='order_notes' onsubmit='return false'>
+        {% csrf_token %}
+          <label for="ordering">Ordering:</label>
+          <select id="ordering" name="ordering">
+            <option value="name">Name</option>
+            <option value="date">Date</option>
+            <option value="rating">Rating</option>
+          </select>
+          <input type="submit">
+        </form> -->
+
+
         <form action='/user/dashboard/'>
             <div class="test">
                 <input class='btn' type='submit' value='Home Page'/>
             </div>
         </form>
+
         {% for key, value in notes.Notes.items %}
             <div class='card4'>
                 <form name="delete_note" method="POST">
                     {% csrf_token %}
                     <input name='restaurant_name' value='{{ key }}' hidden>
-                    <button onclick="alert('Deleting item')" id="deleter" type="submit" class="AClass">
-                        <span>&times;</span>
+                    <button onclick="alert('Deleting item')" id="deleter" type="submit" class="AClass btn">
+                        <span id='button_trans'>&times;</span>
                     </button>
                 </form>
                 <div class="center_notes">
