@@ -3,9 +3,22 @@
 {% block content %}
 <div class='card_cover2'>
     <div class='card2 above'>
-        <form action='/user/dashboard/'>
-            <input class='btn' id='signup_page' type='submit' value='home page' />
-        </form>
+
+        <div class="row">
+          <div class="column">
+              <form action='/user/dashboard/'>
+                  <input class='btn' id='signup_page' type='submit' value='Home Page'/>
+              </form>
+          </div>
+          <div class="column">
+              <form action='/user/create-notes/'>
+                  <input class='btn' id='add_note' type='submit' value='Add a Note' />
+              </form>
+          </div>
+        </div>
+
+
+
         <form class="" name='find_food' method="POST" onsubmit='return false'>
             {% csrf_token %}
             <label for='cost'>Max Cost (From $ to $$$): </label>

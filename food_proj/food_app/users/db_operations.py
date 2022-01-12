@@ -1,4 +1,5 @@
 import pymongo
+import datetime
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = (
@@ -27,7 +28,7 @@ def get_one_user(email):
 
 def add_note(email, name, note, rating):
     #check if note with restaurant already exists, if it does  notify the user
-    if db.users.update({'email': email}, {'$set': {'Notes.{}'.format(name): {'note': note, 'rating': rating}}}):
+    if db.users.update({'email': email}, {'$set': {'Notes.{}'.format(name): {'note': note, 'rating': rating, 'date': datetime.datetime.utcnow()}}}):
         return 'Note Added'
     return 'Note Was Not Added'
 
@@ -39,10 +40,11 @@ def get_user_notes(email):
     notes = db.users.find({'email': email}, {'Notes'})
     return notes
 
+# def get_user_notes_sorted_rating(email):
+#     notes = db.users.find({'email': email}).sort('Notes', 1)
+#     return notes
+
 def delete_note(email, restaurant_name):
-    # notes = db.users.delete_one({'email': email, 'Notes.{}'.format(restaurant_name)})
-
-
     db.users.update(
         {"email": email},
         {"$set": {"Notes.{}".format(restaurant_name): ""}},
