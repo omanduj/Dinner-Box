@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='card_cover_lettuce'>
+    <div class='card2 above card_shrink'>
+
+        <div class="row">
+          <div class="column">
+              <form action='/user/dashboard/'>
+                  <input class='btn' id='signup_page' type='submit' value='Home Page'/>
+              </form>
+          </div>
+          <div class="column">
+              <form action='/user/create-notes/'>
+                  <input class='btn' id='add_note' type='submit' value='Add a Note' />
+              </form>
+          </div>
+          <!-- <div class="column">
+              <form action='/user/foodpicker/'>
+                  <input style='margin-left: 11.3em;' class='btn' id='add_note' type='submit' value='Randomizer'/>
+              </form>
+          </div> -->
+        </div>
+
+        <form name='personal_picker' method="POST" onsubmit='return false'>
+            {% csrf_token %}
+            <label for='rating'>Min Rating </label>
+            <input type='rating' name='rating' placeholder='0' class='field' required>
+
+            <input type="submit" value="Search" class='btn'>
+        </form>
+        <div class='center' id='name'>
+        </div>
+        <div class='center' id='rating'>
+        </div>
+        <div class='center' id='note'>
+        </div>
+        <div class='center' id='error'>
+        </div>
+    </div>
+</div>
+{% endblock %}
