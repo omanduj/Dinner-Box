@@ -2,7 +2,8 @@
 
 {% block content %}
     {% if error %}
-        <div class='card5 center'>
+    <div class="card_cover_beans">
+        <div class='card6 center'>
             <div class="no_notes_container">
                 <form action='/user/dashboard/'>
                     <input class='btn' id='signup_page' type='submit' value='Home Page'/>
@@ -16,6 +17,7 @@
                 </form>
             </div>
         </div>
+    </div> 
     {% endif %}
 
     {% if notes %}
@@ -31,19 +33,19 @@
           <input type="submit">
         </form> -->
 
-
-        <form action='/user/dashboard/'>
-            <div class="test">
-                <input class='btn' type='submit' value='Home Page'/>
-            </div>
-        </form>
+<div class="card_cover_beans">
+    <form action='/user/dashboard/'>
+        <div style="margin-top: -5em; margin-right: -9em;">
+            <input class='btn' type='submit' value='Home Page'/>
+        </div>
+    </form>
 
         {% for key, value in notes.Notes.items %}
             <div class='card4'>
                 <form name="delete_note" method="POST">
                     {% csrf_token %}
                     <input name='restaurant_name' value='{{ key }}' hidden>
-                    <button onclick="alert('Deleting item')" id="deleter" type="submit" class="AClass btn">
+                    <button onclick="alert('Deleting item');" id="deleter" type="submit" class="AClass btn">
                         <span id='button_trans'>&times;</span>
                     </button>
                 </form>
@@ -55,7 +57,9 @@
                 </div>
             </div>
         {% endfor %}
+
     {% endif %}
+</div>
 {% endblock %}
 
 <!-- order by earliest/latest and by alphabet -->
