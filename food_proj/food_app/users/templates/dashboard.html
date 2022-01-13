@@ -2,14 +2,24 @@
 
 {% block content %}
     {% if response %}
-        {{ response }}
-    {% endif %}
-
-    {% if user %}
+    <div class="card_cover_error">
+        <div class="card2 error2">
+            <form action='/home/'>
+                <input class='btn' id='signup_page' type='submit' value='Login'/>
+            </form>
+            <div class="notify">
+                Error: {{ response.response }}
+            </div>
+           
+        </div>
+    </div>
+    {% elif user %}
 
         <!-- {% for key, value in user.items %}
             <h3>{{ key }} - {{ value }}</h3>
         {% endfor %} -->
+
+        
         <div class='card_cover_kale'>
             <div class="card center header">
                 {% load static %}
