@@ -8,27 +8,48 @@
 {% block content %}
     <div class='card_cover'>
         <div class='card2'>
-            <form action='/home/'>
-                <input class='btn' id='signup_page' type='submit' value='home page' />
-            </form>
-            <div class='center'>
-                <h1 class='title_token'>Get a Token</h1>
+            <div class="row">
+                <div class="column">
+                    <form action='/home/'>
+                        <input class='btn' id='signup_page' type='submit' value='Login'/>
+                    </form>
+                </div>
+                <div class="column">
+                    <form name='token_instructions'>
+                        {% csrf_token %}
+                        <input class='btn' style='margin-top: -2.5em; margin-left: 9em;' type='submit' value='Usage'/>
+                    </form>
+                </div>
+              </div>
+            <div id='replace' class='center'>
+                <div class='center'>
+                    <h1 class='title_token'>Get a Token</h1>
+                </div>
+                <form name='login_form' method='POST' id='form_login' onsubmit='return false'>
+                    {% csrf_token %}
+                    <label for='your_name'>Your Email: </label>
+                    <input type='email' name='email' placeholder='email' class='field' required>
+
+                    <label for='your_password'>Password: </label>
+                    <input type='password' name='password' placeholder='Password' class='field' required>
+
+                    <input type='submit' value='login' class='btn'>
+                    <div class='center' id='token_title'>
+                        Token Will Appear Here!
+                    </div>
+                    <div class='center' id='token_value'>
+                    </div>
+                </form>
             </div>
-            <form name='login_form' method='POST' id='form_login' onsubmit='return false'>
-                {% csrf_token %}
-                <label for='your_name'>Your Email: </label>
-                <input type='email' name='email' placeholder='email' class='field' required>
-
-                <label for='your_password'>Password: </label>
-                <input type='password' name='password' placeholder='Password' class='field' required>
-
-                <input type='submit' value='login' class='btn'>
-                <div class='center' id='token_title'>
-                    Token Will Appear Here!
-                </div>
-                <div class='center' id='token_value'>
-                </div>
-            </form>
+            <div class="center">
+                <div id='replace2'></div>
+                <div id='replace3'></div>
+                <div id='replace4'></div>
+                <div id='replace5'></div>
+                <div id='replace6'></div>
+                <div id='replace7'></div>
+                <div id='replace8'></div>
+            </div>
         </div>
     </div>
 {% endblock %}

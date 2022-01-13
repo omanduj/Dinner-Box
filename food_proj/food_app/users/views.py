@@ -35,13 +35,13 @@ def signup_user(request):  # used in routes signup endpoint
     user["password"] = pbkdf2_sha256.encrypt(user["password"])
 
     if find_one_user(user["email"]):
-        return {"error": "Email already in use"}
+        return {"response": "Email already in use"}
 
     if insert_one_user(user):
         start_session(request, user)
-        return {'Success': 'User Created!'}
+        return {'response': 'User Created!'}
 
-    return {"Error": "Sign Up failed"}
+    return {"response": "Sign Up failed"}
 
 def login_user(request):
     """Purpose: To login a user to their account
@@ -52,9 +52,9 @@ def login_user(request):
     user = get_one_user(request.POST.get('email'))
     password = request.POST.get('password')
     if user and pbkdf2_sha256.verify(request.POST.get('password'), user["password"]):
-        return start_session(request, user)
+        return  {'response': start_session(request, user)}
 
-    return ("Invalid Credentials")
+    return ({'response': "Invalid Credentials"})
 
 
 
@@ -84,18 +84,20 @@ def home(request):
 
 def signup(request):
     if request.method == 'POST':
-        response = signup_user(request)
-        return render(request, 'dashboard.html', {'user': response})
+        result = signup_user(request)
+        if result['response'] == 'User Created!':
+            return render(request, 'dashboard.html', {'user': result})
+        return render(request, 'dashboard.html', {'response': result})
 
 def login(request):
     if request.method == 'POST':
-        response = login_user(request)
-        if response != 'Invalid Credentials':
-            del response['Notes']
-            response['name'] = response['name'].capitalize()
-            return render(request, 'dashboard.html', {'user': response})
-        if response == 'Invalid Credentials':
-            return render(request, 'dashboard.html', {'response': response})
+        result = login_user(request)
+        if result['response'] != 'Invalid Credentials':
+            del result['response']['Notes']
+            result['response']['name'] = result['response']['name'].capitalize()
+            return render(request, 'dashboard.html', {'user': result})
+        if result['response'] == 'Invalid Credentials':
+            return render(request, 'dashboard.html', {'response': result})
 
     if request.method == 'GET':
         if request.session['user']:
@@ -104,6 +106,7 @@ def login(request):
             user['name'] = user['name'].capitalize()
             return render(request, 'dashboard.html', {'user': user})
         if response == 'Invalid Credentials':
+            print(response)
             return render(request, 'dashboard.html', {'response': response})
 
 def signout(request):
