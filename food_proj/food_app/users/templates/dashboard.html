@@ -6,26 +6,83 @@
     {% endif %}
 
     {% if user %}
-        {% for key, value in user.items %}
+
+        <!-- {% for key, value in user.items %}
             <h3>{{ key }} - {{ value }}</h3>
-        {% endfor %}
-        <a href="/user/signout/" class="btn btn--secondary">Sign Out</a>
-    {% endif %}
-    <body>
-        <div class="">
-            <form class="" action="/user/foodpicker/" method="GET">
-                <input type='submit' value='Get Some Food!' class='btn'>
-            </form>
-            <form class="" action="/user/create-notes" method="GET">
-                <input type='submit' value='Notes' class='btn'>
-            </form>
-            <form class="" action="/user/personal_picks" method="GET">
-                <input type='submit' value='Personal Picker' class='btn'>
-            </form>
-            <form class="" action="/user/view-notes" method="GET">
-                <input type='submit' value='My Notes' class='btn'>
-            </form>
+        {% endfor %} -->
+        <div class='card_cover_kale'>
+            <div class="card center header">
+                {% load static %}
+                <img id="icon" name="input" class="box" src="{% static 'images/lunch_box.svg' %}">
+                <div class="main_header">
+                    Dinner Box 
+                </div>
+                <div class="sub_header">
+                    Feed Your Curiosity
+                </div>
+            </div>
+
+            <div class="header2">
+                Welcome to Dinner Box {{ user.name }}
+            </div>
+            
+
+
+            <body>
+                <div class="menu">
+
+                    <a href="/user/foodpicker/" class="btn3">
+                        <img id="icon" name="input" class="center chef" src="{% static 'images/chef_hat.svg' %}">
+                        <div class="center text1">
+                            Get Some Food!
+                        </div>
+                    </a>
+
+                    <a href="/user/create-notes" class="btn3">
+                        <img id="icon" name="input" class="center pencil" src="{% static 'images/pencil.svg' %}">
+                        <div class="center text2">
+                            Add a Note
+                        </div>
+                    </a>
+                    <a href="/user/personal_picks" class="btn3">
+                        <img id="icon" name="input" class="center arrow" src="{% static 'images/arrow.svg' %}">
+                        <div class="center">
+                            Personal Picker
+                        </div>
+                    </a>
+                    <a href="/user/view-notes" class="btn3">
+                        <img id="icon" name="input" class="center note_img" src="{% static 'images/notebook.svg' %}">
+                        <div class="center text4">
+                            My Notes
+                        </div>
+                    </a>
+
+                    <a href="/user/signout/" class="btn3">
+                        <img id="icon" name="input" class="center exit" src="{% static 'images/exit.svg' %}">
+                        <div class="center text5">
+                            Sign Out
+                        </div>
+                    </a>
+
+
+                    <!-- <form class="card" action="/user/foodpicker/" method="GET">
+                        <input type='submit' value='Get Some Food!'>
+                    </form>
+                    <form class="card" action="/user/create-notes" method="GET">
+                        <input type='submit' value='Add a Note'>
+                    </form>
+                    <form class="card" action="/user/personal_picks" method="GET">
+                        <input type='submit' value='Personal Picker'>
+                    </form>
+                    <form class="card" action="/user/view-notes" method="GET">
+                        <input type='submit' value='My Notes'>
+                    </form> -->
+                </div>
+            </body>
         </div>
-    </body>
+
+
+    {% endif %}
+
 
 {% endblock %}
