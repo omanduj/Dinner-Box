@@ -41,7 +41,7 @@ packaging in Python. A link to the installation documents can be found here:
 Following installation run the command "poetry install", this will install all the project's dependencies.
 
 In order to run the application, you must execute the following command in the appropriate directory
-(vote_proj/vote_proj):
+(food_proj/food_app):
 >python manage.py runserver
 
  This will cause the program to run locally on port 8000. The webpage is located in the following url:
