@@ -34,12 +34,9 @@
         </form> -->
 
 <div class="card_cover_beans">
-    <form action='/user/dashboard/'>
-        <div style="margin-top: -5em; margin-right: -9em;">
-            <input class='btn' type='submit' value='Home Page'/>
-        </div>
-    </form>
-
+    <a href="/user/dashboard/"  style='text-decoration: none;' >
+        <input class='btn' type='submit' style="margin-top: -3.5em; margin-right: -54.9em;" value='Home Page'/>
+    </a>
         {% for key, value in notes.Notes.items %}
             <div class='card4'>
                 <form name="delete_note" method="POST">

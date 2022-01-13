@@ -141,6 +141,8 @@ p {
     margin-right: auto;
     width: 40%;
     min-width: 575px;
+    position: relative;
+    word-wrap:break-word;  /* <-------  */
 }
 
 .left_button_home {
@@ -495,7 +497,7 @@ input[type=submit] {
    background: url('/static/images/kale.jpg');
    height: 44.5em;
    background-size: 100%;
-   min-width: 800px;
+   min-width: 1200px;
 }
 
 .card_cover_beans {
@@ -572,7 +574,7 @@ input[type=submit] {
 
 #add_note {
     margin-top: -3em;
-    margin-left: 5.4em;
+    margin-left: 7em;
 }
 
 .column {
@@ -618,11 +620,12 @@ input[type=submit] {
 }
 
 .header2 {
-  margin-bottom: 2.5em;
+  margin-bottom: 3em;
   margin-left: 4em;
   font-size: 1.5rem;
   font-family: 'ABeeZee', sans-serif;
   color: white;
+  text-shadow: black 0px 0px 10px;
 }
 
 .home_button {
@@ -690,11 +693,11 @@ input[type=submit] {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;
-  margin-top: -.5em;
+
 }
 
 .text2 {
-  margin-top: .8em;
+  margin-top: 1.5em;
 }
 
 .arrow {
@@ -704,7 +707,7 @@ input[type=submit] {
   width: 55%;
   margin-left: 2em;
   margin-right: -25em;
-  margin-top: 0em;
+  margin-top: .7em;
 }
 
 .note_img {
@@ -727,4 +730,8 @@ input[type=submit] {
 
 .text5 {
   margin-top: 2em;
+}
+
+#note{
+  word-wrap:break-word;
 }
