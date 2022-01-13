@@ -13,13 +13,13 @@ webpage and request a token. Once token is recieved follow the directions on its
 
 How to use token service:
     Issue requests to the following endpoint: 
-        http://127.0.0.1:8000/auth/
+>http://127.0.0.1:8000/auth/
     Define the headers as follows: 
-        -H "Authorization:{Bearer:my_token}"
+>-H "Authorization:{Bearer:my_token}"
     Then define the information you are passing in in the following format: 
-        --data "cost=$&rating=2"
+>--data "cost=$&rating=2"
     The final request should appear similar to:
-        http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:my_token}" --data "cost=$&rating=2"
+>http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:my_token}" --data "cost=$&rating=2"
     Add curl at start if using as a CLI
     You will have 90 minutes before the token you have obtained expires, but you can reapply for more!
 
