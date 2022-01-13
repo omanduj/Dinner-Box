@@ -155,6 +155,38 @@ $("form[name=personal_picker]").submit(function(e){     //when form=X, on submit
     })
     e.preventDefault();
 });
+
+
+
+$("form[name=token_instructions]").submit(function(e){     //when form=X, on submit, do this
+
+    var $form = $(this);
+    var $error = $form.find(".error");
+    var data = $form.serialize();
+
+    $.ajax({
+        url: "/user/token/instructions/",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+            console.log(resp);
+            $('#replace').html('How to use token service:');
+            $('#replace2').html('For command line usage simply use curl on the following endpoint: http://127.0.0.1:8000/auth/');
+            $('#replace3').html('Define the headers as follows: -H "Authorization:{Bearer:my_token}"');
+            $('#replace4').html('Then define the information you are passing in in the following format: --data "cost=$&rating=2"');
+            $('#replace5').html('The final request should appear similar to:');
+            $('#replace6').html('http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:my_token}" --data "cost=$&rating=2"');
+            $('#replace7').html('Add curl if using as a CLI');
+            $('#replace8').html('You will have 90 minutes before the token you have obtained expires, but you can reapply for more!');
+        },
+        error: function(resp) {
+            console.log(resp);
+            $error.text(resp.responseJSON.error).removeClass('error--hidden');
+        }
+    })
+    e.preventDefault();
+});
 // $("form[name=order_notes]").submit(function(e){     //when form=X, on submit, do this
 //
 //     var $form = $(this);
