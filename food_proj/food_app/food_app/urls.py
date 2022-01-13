@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from get_food.views import display
+from get_food.views import display, peronal_picker
 from users_token.views import index, token_login, public, auth
 from users.views import home, signup, login, signout, food_random_picker
-from notes.views import create_note, view_notes, delete_user_note
+from notes.views import create_note, view_notes, delete_user_note, view_notes
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,11 +34,14 @@ urlpatterns = [
     path('user/signup/', signup),
     path('user/signout/', signout),
     path('user/dashboard/', login),
-    path('user/notes/', login),
+    path('user/personal_picks/', peronal_picker),
+    
+    # path('user/notes/', login),             #?
 
     path('user/create-notes/', create_note),
     path('user/view-notes', view_notes),
     path('user/delete-note/', delete_user_note),
+    path('user/order/', view_notes),
 
     path('user/foodpicker/', food_random_picker)
 ]
