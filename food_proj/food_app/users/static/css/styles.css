@@ -114,6 +114,7 @@ p {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
+    min-width: 575px;
 }
 
 .card3 {
@@ -164,6 +165,22 @@ p {
     margin-right: auto;
     width: 40%;
     min-width: 575px;
+}
+
+.card6 {
+  padding: 20px 40px;
+  font-family: 'ABeeZee', sans-serif;
+  font-size: 150%;
+  padding-bottom: 10em;
+  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+  border-radius: 50px;
+  background: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  min-width: 575px;
+  height: 15em;
 }
 
 .edge {
@@ -377,7 +394,7 @@ textarea {
   transition: color .15s ease, background-color .15s ease;
 }
 
-.test {
+.home_button {
     margin-left: -60em;
     margin-bottom: -3em;
 }
@@ -445,6 +462,7 @@ input[type=submit] {
 
 .no_notes_container {
     height: 4.5em;
+
 }
 .card_cover {
     margin: 0 auto;
@@ -470,6 +488,32 @@ input[type=submit] {
      min-width: 900px;
      background-size: 100%;
 }
+
+.card_cover_lettuce{
+    margin: 0 auto;
+     padding: 90px 30px;
+     flex-wrap: wrap;
+     justify-content: center;
+     display: flex;
+     background: url('/static/images/lettuce.jpg');
+     height: 44.5em;
+     min-width: 1200px;
+     background-size: 100%;
+}
+
+.card_cover_beans {
+  margin: 0 auto;
+  padding: 90px 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+  background: url('/static/images/beans.jpg');
+  height: 44.5em;
+  min-width: 1200px;
+  background-size: 100%;
+  overflow-y:auto
+}
+
 
 .card_flowers {
     padding: 20px 40px;
@@ -542,4 +586,8 @@ input[type=submit] {
 .row:after {
   display: table;
   clear: both;
+}
+
+.card_shrink {
+    height: 19em;
 }

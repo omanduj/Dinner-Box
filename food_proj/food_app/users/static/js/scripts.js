@@ -60,7 +60,6 @@ $("form[name=find_food]").submit(function(e){     //when form=X, on submit, do t
         error: function(resp) {
             console.log(resp);
             alert('Please provide valid inputs')
-                            //of signup class. So it will print out the error whose key is error
         }
     })
     e.preventDefault();
@@ -109,6 +108,7 @@ $("form[name=delete_note]").submit(function(e){     //when form=X, on submit, do
         dataType: "json",
         success: function(resp) {
             console.log(resp);
+            location.reload();  
         },
         error: function(resp) {
             console.log(resp);
@@ -118,6 +118,43 @@ $("form[name=delete_note]").submit(function(e){     //when form=X, on submit, do
     e.preventDefault();
 });
 
+$("form[name=personal_picker]").submit(function(e){     //when form=X, on submit, do this
+
+    var $form = $(this);
+    var $error = $form.find(".error");
+    var data = $form.serialize();
+
+    $.ajax({
+        url: "/user/personal_picks/",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function(resp) {
+            console.log(resp);
+
+            var name = 'Name: ' + Object.keys(resp)
+
+            if (Object.keys(resp) != 'Error') {
+                var rating = 'Rating: ' + resp[Object.keys(resp)]['rating']
+                var note = 'Note: ' + resp[Object.keys(resp)]['note']
+                $('#name').html(name);
+                $('#rating').html(rating);
+                $('#note').html(note);
+
+            }  else {
+                $('#name').html('');
+                $('#rating').html('');
+                $('#note').html('');
+                $('#error').html(resp['Error'])
+            }
+        },
+        error: function(resp) {
+            console.log(resp);
+            $error.text(resp.responseJSON.error).removeClass('error--hidden');
+        }
+    })
+    e.preventDefault();
+});
 // $("form[name=order_notes]").submit(function(e){     //when form=X, on submit, do this
 //
 //     var $form = $(this);
