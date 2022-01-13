@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from get_food.views import display, peronal_picker
-from users_token.views import index, token_login, public, auth
+from users_token.views import index, token_login, public, auth, token_instructions
 from users.views import home, signup, login, signout, food_random_picker
 from notes.views import create_note, view_notes, delete_user_note, view_notes
 
@@ -30,6 +30,7 @@ urlpatterns = [
 
     path('token/', index),                  #used to give new tokens to users - GET -> login/
     path('token/login/', token_login),                  #used to save user token info and display token - POST
+    path('user/token/instructions/', token_instructions),
 
     path('user/signup/', signup),
     path('user/signout/', signout),
