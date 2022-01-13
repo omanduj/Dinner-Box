@@ -172,7 +172,7 @@ $("form[name=token_instructions]").submit(function(e){     //when form=X, on sub
         success: function(resp) {
             console.log(resp);
             $('#replace').html('How to use token service:');
-            $('#replace2').html('For command line usage simply use curl on the following endpoint: http://127.0.0.1:8000/auth/');
+            $('#replace2').html('Issue requests to the following endpoint: http://127.0.0.1:8000/auth/');
             $('#replace3').html('Define the headers as follows: -H "Authorization:{Bearer:my_token}"');
             $('#replace4').html('Then define the information you are passing in in the following format: --data "cost=$&rating=2"');
             $('#replace5').html('The final request should appear similar to:');
