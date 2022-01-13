@@ -21,7 +21,7 @@ db = (
     client.user_tokens
 )
 
-# curl http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjpudWxsLCJleHAiOjE2NDE0MzE0ODJ9.Dhbb6W3kqhDLKZaQCsQWEWkUM8g7ZtvAyYUB3g8tTjk}" --data 'cost=$&rating=2'
+# curl http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjpudWxsLCJleHAiOjE2NDIxMDg5MzN9.7qmwUYE3Wn7CEwQubWPvbMLmtmZOQU_9JmJLDV7A3V4}" --data 'cost=$&rating=2'
 
 def check_for_token(func):
     """Purpose: To verify token is sent in request
@@ -97,7 +97,7 @@ def token_login(request):
             password = pbkdf2_sha256.encrypt(request.POST.get('password'))
             request.session['logged_in'] = True
             token_en = jwt.encode({'user': request.POST.get('username'),
-                                'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5000)},
+                                'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5400)},
                                 app['SECRET_KEY'])
 
             token = jwt.decode(token_en, app['SECRET_KEY'], algorithms=["HS256"])
@@ -110,7 +110,7 @@ def token_login(request):
             if user['email'] == request.POST.get("email") and pbkdf2_sha256.verify(request.POST.get('password'), user['password']):
                 request.session['logged_in'] = True
                 token = jwt.encode({'user': request.POST.get('username'),
-                                    'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5000)},
+                                    'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5400)},
                                     app['SECRET_KEY'])
                 # db.user_tokens.update({"email": request.POST.get("email")}, {'$set': {'token.{}'.format(datetime.datetime.utcnow()): token}})
                 db.user_tokens.update({"email": request.POST.get("email")}, {'$set': {'token': token}})
@@ -120,3 +120,6 @@ def token_login(request):
                 return JsonResponse({'Error': 'Email Does Not Corresponds to Password'})
         else:
             return  JsonResponse({'Error': "Not Found"})
+
+def token_instructions(request):
+    return JsonResponse({'Instructions': "token"})
