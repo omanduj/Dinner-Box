@@ -59,6 +59,10 @@ def login_user(request):
 
 
 def food_random_picker(request):
+    """Purpose: To serve as endpoint to return information of restaurant that fits the users criteria
+    Parameters: N/a
+    Return Value: JsonResponse with information of a restaurant that satisfies a certain criteria
+    """
     if request.method == 'GET':
         return render(request, 'food_finder.html')
 
@@ -79,10 +83,19 @@ def food_random_picker(request):
 
 
 def home(request):
+    """Purpose: To render the sign up/login webpage
+    Parameters: N/a
+    Return Value: Rendering the home.html file
+    """
     if request.method == 'GET':
         return render(request, 'home.html')
 
 def signup(request):
+    """Purpose: To sign a user up for the service
+    Parameters: N/a
+    Return Value: On success it will display dashboard.html with success options
+                    On Error it will display dashboard.html with error window
+    """
     if request.method == 'POST':
         result = signup_user(request)
         if result['response'] == 'User Created!':
@@ -90,6 +103,11 @@ def signup(request):
         return render(request, 'dashboard.html', {'response': result})
 
 def login(request):
+    """Purpose: To login a user and display dashboard capabilities
+    Parameters: N/a
+    Return Value: On success it will display dashboard.html with success options
+                    On Error it will display dashboard.html with error window
+    """
     if request.method == 'POST':
         result = login_user(request)
         if result['response'] != 'Invalid Credentials':
@@ -110,5 +128,9 @@ def login(request):
             return render(request, 'dashboard.html', {'response': response})
 
 def signout(request):
+    """Purpose: To sign a user out
+    Parameters: N/a
+    Return Value: redirection to the sign up and login page
+    """
     request.session.clear()
     return redirect("/home/")

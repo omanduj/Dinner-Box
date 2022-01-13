@@ -7,6 +7,10 @@ import collections
 
 # Create your views here.
 def order_notes_name(request):            #have this and next switch between reverse depending on user selection (form, ect)
+    """Purpose: To order notes alphabetically 
+    Parameters: N/a
+    Return Value: standard_note - Notes sorted in alphabetical order
+    """
     notes = get_user_notes(request.session["user"]['email'])
     notes = list(notes)[0]['Notes']                                  #used to format returned information into a dict
     # notes = dict(sorted(notes.items(), reverse=True))
@@ -16,6 +20,10 @@ def order_notes_name(request):            #have this and next switch between rev
     return standard_note
 
 def order_notes_rating(request):
+    """Purpose: To order notes by rating 
+    Parameters: N/a
+    Return Value: standard_note - Notes sorted by rating
+    """
     notes = get_user_notes(request.session["user"]['email'])
     notes = list(notes)[0]['Notes']
     notes_order = {}
@@ -32,6 +40,10 @@ def order_notes_rating(request):
 
 
 def order_notes_date(request):
+    """Purpose: To order notes by date added 
+    Parameters: N/a
+    Return Value: standard_note - Notes sorted in order by date 
+    """
     notes = get_user_notes(request.session["user"]['email'])
     notes = list(notes)[0]['Notes']
     notes_order = {}
@@ -49,7 +61,11 @@ def order_notes_date(request):
 
 
 
-def order_notes(request):
+def order_notes(request):       #to be worked on
+    """Purpose: To order notes a certain way
+    Parameters: N/a
+    Return Value: Notes in an ordered way
+    """
     ordering = request.POST.get('ordering')
     return JsonResponse({'Ordering': ordering})
 
@@ -58,6 +74,12 @@ def order_notes(request):
 
 
 def create_note(request):
+    """Purpose: To create a note for the user
+    Parameters: N/a
+    Return Value: On Get will display the create_note.html file to add a note
+                    On Post will either create the note and notify user it was successful or
+                        will notify user the note for that restaurant already exists
+    """
     if request.method == "GET":
         return render(request, 'create_note.html')
 
@@ -76,6 +98,11 @@ def create_note(request):
         return JsonResponse({'Error': 'Note Already Exists'})
 
 def view_notes(request):
+    """Purpose: To view notes of a given user
+    Parameters: N/a
+    Return Value: On success note_viewer.html page with users notes
+                    On no notes found it will display note_viewer.html with window telling user to add notes
+    """
     if request.method == "GET":
         # note_collection = []
         email = request.session["user"]['email']
@@ -108,10 +135,14 @@ def view_notes(request):
     #     return JsonResponse({'Success': user_notes})
 
 def delete_user_note(request):
+    """Purpose: To remove a users note
+    Parameters: N/a
+    Return Value: JsonResponse notifying the user whether note is successfuly removed or not
+    """
     restaurant_name = request.POST.get('restaurant_name')
     email = request.session["user"]['email']
     notes_found = delete_note(email, restaurant_name)
     # print(notes_found, 'GG')
     if notes_found:
         return JsonResponse({'Success': notes_found})
-    return JsonResponse({'Error': 'Not Foundsss'})
+    return JsonResponse({'Error': 'Not Founds'})
