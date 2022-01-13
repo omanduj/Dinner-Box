@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.db import models
+from django.http import JsonResponse
+from users.db_operations import get_user_notes
 import random
 import requests
 import json
@@ -65,6 +67,7 @@ def restaurant_collection(restaurant_data):
 def format_info(location):
     response = send_cred(location)
     restaurant_info = json.loads(response.content.decode('UTF-8'))
+    #Possible error where no info is returned, causing a 'input valid input' alert
     business_data = restaurant_info['businesses']
     all_restaurant_info = restaurant_collection(business_data)
 
@@ -90,3 +93,26 @@ def display(location, *args, **kwargs):
     }
     return test
     # return render(request, 'home.html', test)
+
+
+
+
+def peronal_picker(request):
+    if request.method == 'GET':
+        return render(request, 'personal_food_picker.html')
+
+    if request.method == 'POST':
+        rating = int(request.POST.get('rating'))
+
+        notes = get_user_notes(request.session["user"]["email"])
+        notes = list(notes)[0]['Notes']
+
+        options = []
+        for name, info in notes.items():
+            if info['rating'] >= rating:
+                options.append(name)
+        if len(options) != 0:
+            random_option = random.choice(options)
+            my_restaurant = notes[random_option]
+            return JsonResponse({random_option: my_restaurant})
+        return JsonResponse({'Error': 'Nothing Found'})
