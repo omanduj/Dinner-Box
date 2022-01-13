@@ -92,6 +92,7 @@ def login(request):
         response = login_user(request)
         if response != 'Invalid Credentials':
             del response['Notes']
+            response['name'] = response['name'].capitalize()
             return render(request, 'dashboard.html', {'user': response})
         if response == 'Invalid Credentials':
             return render(request, 'dashboard.html', {'response': response})
@@ -100,6 +101,7 @@ def login(request):
         if request.session['user']:
             user = get_one_user(request.session['user']['email'])
             del user['password']
+            user['name'] = user['name'].capitalize()
             return render(request, 'dashboard.html', {'user': user})
         if response == 'Invalid Credentials':
             return render(request, 'dashboard.html', {'response': response})
