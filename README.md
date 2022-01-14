@@ -49,6 +49,7 @@ In order to run the application, you must execute the following command in the a
 
 Once user has logged in or signed up, they will be directed to the following url:
 >http://127.0.0.1:8000/user/dashboard/
+![MainMenu](https://user-images.githubusercontent.com/44513190/149452705-844eca16-62c1-4450-b209-0ef7fbdb539a.png)
 
 This will display user information and options user has available to them.
 
