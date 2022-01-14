@@ -46,6 +46,7 @@ In order to run the application, you must execute the following command in the a
 
  This will cause the program to run locally on port 8000. The webpage is located in the following url:
 >http://127.0.0.1:8000/home/
+![Screen Shot 2022-01-13 at 10 53 11 PM](https://user-images.githubusercontent.com/44513190/149453204-5553e0f8-842d-44c9-b372-a555bbd60b97.png)
 
 Once user has logged in or signed up, they will be directed to the following url:
 >http://127.0.0.1:8000/user/dashboard/
