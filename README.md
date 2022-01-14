@@ -55,6 +55,7 @@ This will display user information and options user has available to them.
 
 The following url is used to add a restaurants' note to a users account:
 >http://127.0.0.1:8000/user/create-notes/
+![Screen Shot 2022-01-13 at 10 28 04 PM](https://user-images.githubusercontent.com/44513190/149452869-4e1ea2d7-4832-420d-8dc4-c83cb46d09bb.png)
 
 The following url is used to randomly select a local restaurant to eat at that fits user criteria:
 >http://127.0.0.1:8000/user/foodpicker/
@@ -67,3 +68,4 @@ The following url is used to view all notes registered to a users account:
 
 The following url is used to issue tokens for users who wish to use the random selector of local restaurants functionality:
 >http://127.0.0.1:8000/token/
+>![token](https://user-images.githubusercontent.com/44513190/149452930-b8b628de-25d7-4cfc-8ab5-626a1a7b6f7f.png)
