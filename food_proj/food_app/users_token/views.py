@@ -10,13 +10,14 @@ import datetime
 import pymongo
 import requests
 import geocoder
+import os
 
 
 app = {}
 app["SECRET_KEY"] = "thisisthesecretkey"
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")  # connect to db
-# client = pymongo.MongoClient("mongodb://root:rootpassword@127.0.0.1")
+# client = pymongo.MongoClient("mongodb://{}:{}@mongodb_container:127.0.0.1".format(os.getenv('USERNAME'), os.getenv('PASSWORD)))
 
 db = client.user_tokens
 
