@@ -87,6 +87,20 @@ DATABASES = {
         }
 }
 
+
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'djongo',
+#             'NAME': 'api',
+#             'CLIENT': {
+#                 'USERNAME': 'root',
+#                 'PASSWORD': 'rootpassword',
+#                 'host': 'mongodb_container',
+#                 'port': 27017,
+#             }
+#         }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 

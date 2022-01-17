@@ -16,6 +16,8 @@ app = {}
 app["SECRET_KEY"] = "thisisthesecretkey"
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")  # connect to db
+# client = pymongo.MongoClient("mongodb://root:rootpassword@127.0.0.1")
+
 db = client.user_tokens
 
 # curl http://127.0.0.1:8000/auth/ -H "Authorization:{Bearer:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjpudWxsLCJleHAiOjE2NDIxMDg5MzN9.7qmwUYE3Wn7CEwQubWPvbMLmtmZOQU_9JmJLDV7A3V4}" --data 'cost=$&rating=2'

@@ -2,6 +2,7 @@ import pymongo
 import datetime
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")
+# client = pymongo.MongoClient("mongodb://root:rootpassword@127.0.0.1")
 db = client.users
 
 # --------------------------- Users ---------------------#
