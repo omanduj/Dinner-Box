@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.db import models
 from django.http import JsonResponse
 from users.db_operations import get_user_notes
+from config import token_key
 import random
 import requests
 import json
-import os
 
 # Create your views here.
 class Restaurant_info(models.Model):
@@ -51,7 +51,7 @@ def credentials():
     Parameters: N/a
     Return Value: headers - information formatted in required format
     """
-    key = os.getenv('token_key')
+    key = token_key
     headers = {"Authorization": "bearer %s" % key}
     return headers
 

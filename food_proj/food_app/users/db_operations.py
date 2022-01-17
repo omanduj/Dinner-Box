@@ -1,9 +1,10 @@
+from config import USERNAME, PASSWORD
 import pymongo
 import datetime
-import os
+
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")
-# client = pymongo.MongoClient("mongodb://{}:{}@mongodb_container:127.0.0.1".format(os.getenv('USERNAME'), os.getenv('PASSWORD)))
+# client = pymongo.MongoClient("mongodb://{}:{}@mongodb_container:127.0.0.1".format(USERNAME, PASSWORD))
 db = client.users
 
 # --------------------------- Users ---------------------#
