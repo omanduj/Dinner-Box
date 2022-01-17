@@ -5,6 +5,7 @@ from users.db_operations import get_user_notes
 import random
 import requests
 import json
+import os
 
 # Create your views here.
 class Restaurant_info(models.Model):
@@ -50,7 +51,7 @@ def credentials():
     Parameters: N/a
     Return Value: headers - information formatted in required format
     """
-    key = "2E7rOgAXr-suArMqgPvLy0dF6YKqKzH26MhFSi6-23fF3qfsZjkysaeT_E9mWgrU_NVBpp4D7Tz-jmarCmx_wLtxoCNlH-j_2mFCW7yHS_nLr1pJ4B-ArBEXNS12YXYx"
+    key = os.getenv('token_key')
     headers = {"Authorization": "bearer %s" % key}
     return headers
 
