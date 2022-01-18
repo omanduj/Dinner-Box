@@ -5,6 +5,7 @@ from django.utils.functional import wraps
 from passlib.hash import pbkdf2_sha256
 from geopy.geocoders import Nominatim
 from get_food.views import display, random_picker
+from config import APP_SECRET
 import jwt
 import datetime
 import pymongo
@@ -14,7 +15,7 @@ import os
 
 
 app = {}
-app["SECRET_KEY"] = "thisisthesecretkey"
+app["SECRET_KEY"] = APP_SECRET
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")  # connect to db
 # client = pymongo.MongoClient("mongodb://{}:{}@mongodb_container:127.0.0.1".format(USERNAME, PASSWORD))
