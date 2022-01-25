@@ -70,3 +70,8 @@ The following url is used to view all notes registered to a users account:
 The following url is used to issue tokens for users who wish to use the random selector of local restaurants functionality:
 >http://127.0.0.1:8000/token/
 >![token](https://user-images.githubusercontent.com/44513190/149452930-b8b628de-25d7-4cfc-8ab5-626a1a7b6f7f.png)
+
+In order to execute predefined tests enter the corresponding directory (food_proj/food_app) run the following command in the
+command line:
+>python manage.py test
+
