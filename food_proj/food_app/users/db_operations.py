@@ -44,7 +44,6 @@ def get_one_user(email):
     return False
 
 
-# --------------------------- Notes ---------------------#
 
 
 def add_note(email, name, note, rating):
