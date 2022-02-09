@@ -39,6 +39,7 @@ packaging in Python. A link to the installation documents can be found here:
 >https://python-poetry.org/docs/
 
 Following installation run the command "poetry install", this will install all the project's dependencies.
+Then declare a config.py file with all required variable names.
 
 In order to run the application, you must execute the following command in the appropriate directory
 (food_proj/food_app):
